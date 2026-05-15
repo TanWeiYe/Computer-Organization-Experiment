@@ -1,0 +1,7 @@
+build/
+wave/
+*.vcd
+*.vvp
+*.fst
+*.lxt
+*.lxt2

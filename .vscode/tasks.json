@@ -1,0 +1,84 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Toolchain: Check Availability",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/check-toolchain.ps1"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Run: Simulation (run-sim)",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/run-sim.bat",
+      "args": [],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Run: Simulation (choose problem)",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/run-sim.bat",
+      "args": [
+        "${input:problemDir}"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "GTKWave: Open Waveform",
+      "type": "shell",
+      "command": "gtkwave",
+      "args": [
+        "${workspaceFolder}/wave/top.vcd"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Clean: Remove Build Artifacts",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Remove-Item -Recurse -Force '${workspaceFolder}/build','${workspaceFolder}/wave' -ErrorAction SilentlyContinue"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "problemDir",
+      "type": "promptString",
+      "description": "请输入作业或题目目录（例如: assignments\\1\\p1）",
+      "default": "assignments\\1\\p1"
+    }
+  ]
+}

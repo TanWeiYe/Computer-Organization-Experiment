@@ -1,0 +1,20 @@
+{
+  "files.associations": {
+    "*.v": "verilog",
+    "*.sv": "systemverilog",
+    "*.svh": "systemverilog",
+    "*.bsv": "bluespec"
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "editor.detectIndentation": false,
+  "files.exclude": {
+    "**/build": true,
+    "**/wave": true
+  },
+  "search.exclude": {
+    "**/build": true,
+    "**/wave": true
+  }
+}
