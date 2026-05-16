@@ -121,47 +121,13 @@ overflow = (a[15] != b[15]) && (result[15] != a[15])
 - `result[15:0]`：ALU 运算结果
 - `zero`, `carry`, `negative`, `overflow`：四个标志位
 
-## 4.3 波形与截图说明
-
-下面表格专门用于放置每个用例对应的建议截图文件、关键观察点与简要讲解。请将截图保存到 `assignments/1/p1/docs/` 并按表格命名（`wave_s1.png` … `wave_s11.png`），我会在报告中自动引用这些图片。
-
-| 用例编号 | 建议截图文件 | 关键观察点与讲解 | 关键信号 |
-|---------:|--------------|------------------|---------|
-| 1 | wave_s1.png | 简单加法：确认 `result=0x0008`，`zero=0`，`carry=0`，`overflow=0` | `a,b,alu_op,result,zero,carry,overflow` |
-| 2 | wave_s2.png | 加法进位：`0xFFFF+0x0001`，确认 `result=0x0000` 且 `carry=1`，`zero=1` | 同上 |
-| 3 | wave_s3.png | 有符号溢出：`0x7FFF+0x0001`，确认 `result=0x8000`，`overflow=1`，`negative=1` | 同上 |
-| 4 | wave_s4.png | 简单减法：`0x0008-0x0003=0x0005`，`carry=1`（无借位） | 同上 |
-| 5 | wave_s5.png | 减法零标志：`0x0005-0x0005=0x0000`，`zero=1`，`carry=1` | 同上 |
-| 6 | wave_s6.png | 与运算：`0x00F0 & 0x0F0F = 0x0000`，`zero=1` | 同上 |
-| 7 | wave_s7.png | 或运算：`0x00F0 | 0x0F0F = 0x0FFF` | 同上 |
-| 8 | wave_s8.png | 异或运算：`0x00FF ^ 0x0F0F = 0x0FF0` | 同上 |
-| 9 | wave_s9.png | 逻辑左移：`0x0001 << 4 = 0x0010`，确认位移量正确 | 同上 |
-| 10 | wave_s10.png | 逻辑右移：`0x8000 >> 4 = 0x0800`（逻辑右移，填零） | 同上 |
-| 11 | wave_s11.png | 无符号比较：`0x0005 < 0xFFFF`，结果 `1` | `result` |
-
-每个截图建议包含时间窗：从该用例输入施加点开始向后约 0~20ns，以覆盖输入切换与输出稳定期。
-
-GTKWave 快速截图步骤：
-
-```powershell
-gtkwave wave/alu16.vcd
-```
-
-1. 在左侧 Signals 面板中添加 `a[15:0]`, `b[15:0]`, `alu_op[2:0]`, `result[15:0]`, `zero`, `carry`, `negative`, `overflow`。
-2. 将数制设置为 Hex，定位到相应测试点的输入切换处并缩放（水平）使输入与输出同时可见。
-3. 菜单 File -> Write -> Save Image，保存为 `assignments/1/p1/docs/wave_s<N>.png`。
-
-在你把图片放到指定路径后，我会把图片嵌入到报告对应位置并可以为每张图补充更详细的解说
----
-
-## 4.4 样例波形截图（已嵌入）
+## 4.3 样例波形截图（已嵌入）
 
 下面展示一张来自本次仿真的样例波形截图（已引用文件：`assignments/1/p1/docs/wave_s1.png`）。请确保将截图文件保存到该路径，报告将直接显示该图片：
 
-![ALU16 仿真波形样例](p1/docs/wave_s1.png)
+![ALU16 仿真波形样例](../p1/docs/wave_s1.png)
 
 图注：该截图显示了多个测试用例在时间轴上的输入/输出变化，可用于验证 `result` 与标志位 `zero/carry/negative/overflow` 的时序关系。
-
 
 ## 5. 结论
 
