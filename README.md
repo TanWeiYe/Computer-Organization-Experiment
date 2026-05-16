@@ -1,52 +1,90 @@
-# 数字电路开发环境（统一脚本 + 作业源码分离）
+# 数字电路作业仓库（统一脚本 + 作业源码分离）
 
-本仓库约定：根目录保存工具、脚本与配置；每个作业放在 `assignments/<n>` 下，仅包含源码与测试平台（每道题目可放在 `p1/`、`p2/` 子目录）。
+本 README 说明工作流与文件夹架构，目标是让你下次仅依靠此文档即可独立完成作业。
 
-核心目录说明
+## 1. 目录结构
 
-- `assignments/`：所有作业目录（每份作业内只保留源码和测试平台）
-- `build/`：编译产物（根目录共享）
-- `wave/`：仿真波形（根目录共享）
-- `scripts/`：一键运行与辅助脚本（统一复用）
-- `.vscode/`：VS Code 任务与编辑器配置
+```
+.
+├─ assignments/
+│  ├─ <n>/
+│  │  ├─ docs/                # 作业报告（Markdown / PDF 等）
+│  │  └─ p1/                   # 题目目录（p1/p2/...
+│  │     ├─ src/verilog/       # 设计源码（.sv）
+│  │     ├─ tb/                # 测试平台（testbench）
+│  │     └─ docs/              # 波形截图等素材（wave_s*.png）
+├─ build/                      # 编译产物（统一输出）
+├─ wave/                       # 波形输出（统一输出 .vcd）
+├─ scripts/                    # 一键脚本
+└─ .vscode/                    # VS Code 任务/配置
+```
 
-工具链简介
+## 2. 工具清单
 
-- `iverilog` / `vvp`：Icarus Verilog 工具链，`iverilog` 将 Verilog/SystemVerilog 源编译为 `.vvp`，`vvp` 运行仿真并可生成 VCD 波形。
-- `gtkwave`：打开 `.vcd` 波形文件查看波形。
+- Icarus Verilog：`iverilog` / `vvp`
+- GTKWave：`gtkwave`
 
-一键运行（推荐）
+## 3. 标准工作流
 
-根目录提供统一脚本 `scripts/run-sim.bat`（Windows）用于：编译 → 仿真 → 打开波形。使用方式：
+### 3.1 编译与仿真
 
-1. 运行默认（示例）：
+统一使用脚本 `scripts/run-sim.bat`（Windows）：
 
 ```powershell
 .\scripts\run-sim.bat
 ```
 
-1. 指定作业或题目目录，例如运行 assignments/1 下的 p1：
+指定题目目录（推荐写完整路径层级 `assignments/<n>/pX`）：
 
 ```powershell
 .\scripts\run-sim.bat assignments\1\p1
 ```
 
-1. 仍然可以使用老接口直接传入顶层和文件（向后兼容）：
+脚本默认会：
 
-```powershell
-.\scripts\run-sim.bat top assignments\1\p1\src\verilog\alu16.sv assignments\1\p1\tb\alu16_tb.sv
+1. 编译 `src/verilog/*.sv` 与 `tb/*.sv`
+2. 运行仿真并生成 `wave/<top>.vcd`
+3. 自动打开 GTKWave 查看波形
+
+### 3.2 波形截图
+
+在 GTKWave 中选择 File → Write → Save Image，将截图保存到：
+
+```
+assignments/<n>/pX/docs/wave_s<N>.png
 ```
 
-VS Code 集成
+示例：
 
-- 在 VS Code 的运行任务中选择 `Run: Simulation (choose problem)`，会提示输入作业或题目目录（例如 `assignments\1\p1`）。
+```
+assignments/1/p1/docs/wave_s1.png
+```
 
-实践建议
+### 3.3 报告更新
 
-- 每个作业只放源码和测试平台（`src/`、`tb/`）；所有脚本、工具检测、波形输出放根目录，便于统一维护和复用。
-- 若需要保留示例或历史文件，可将其移动到 `examples/` 目录以便参考。
+报告统一放在：
 
-如果你想，我可以：
+```
+assignments/<n>/docs/
+```
 
-- 把根 README 增加一节「常见问题与故障排查」；或
-- 把当前根任务改为交互式选择已检测到的 `assignments/<n>/p*` 列表。哪一个优先？
+建议在报告中：
+
+- 写清楚测试向量与期望输出
+- 引用 `pX/docs/` 下的波形截图
+- 填写“实际结果/实际标志/是否正确”对照表
+
+## 4. 新作业的最小模板
+
+新建一个题目时建议包含以下最小结构：
+
+```
+assignments/<n>/
+├─ docs/
+└─ p1/
+ ├─ src/verilog/
+ │  └─ <design>.sv
+ ├─ tb/
+ │  └─ <design>_tb.sv
+ └─ docs/
+```

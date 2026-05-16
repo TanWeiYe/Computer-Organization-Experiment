@@ -1,4 +1,4 @@
-`timescale 1ns/1ps  // 时间单位: 1ns，精度: 1ps
+`timescale 1ps/1ps  // 时间单位: 1ps，精度: 1ps
 
 // 测试平台（Testbench）模块
 module top_tb;

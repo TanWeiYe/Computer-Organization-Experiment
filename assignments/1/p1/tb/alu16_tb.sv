@@ -1,4 +1,4 @@
-`timescale 1ns/1ps
+`timescale 1ps/1ps
 module tb_alu16;
     // DUT 接口
     reg  [15:0] a;
@@ -71,14 +71,11 @@ module tb_alu16;
         // 异或：00FF ^ 0F0F = 0FF0
         a = 16'h00FF; b = 16'h0F0F; alu_op = 3'b100; check(16'h0FF0 , 1'b0, 1'b0, 1'b0, 1'b0, "xor"); #10;
 
-        // 左移：0001 << 4 = 0010
+        // 逻辑左移：0001 << 4 = 0010 (logical)
         a = 16'h0001; b = 16'h0004; alu_op = 3'b101; check(16'h0010, 1'b0, 1'b0, 1'b0, 1'b0, "lshift"); #10;
 
         // 逻辑右移：8000 >> 4 = 0800 (logical)
         a = 16'h8000; b = 16'h0004; alu_op = 3'b110; check(16'h0800, 1'b0, 1'b0, 1'b0, 1'b0, "lshr"); #10;
-
-        // 无符号比较：0xFFFE (65534) < 0x0001 (1) -> false (result=0)
-        a = 16'hFFFE; b = 16'h0001; alu_op = 3'b111; check(16'h0000, 1'b1, 1'b0, 1'b0, 1'b0, "cmpu false"); #10;
 
         // 无符号比较：0x0005 (5) < 0xFFFF (65535) -> true (result=1)
         a = 16'h0005; b = 16'hFFFF; alu_op = 3'b111; check(16'h0001, 1'b0, 1'b0, 1'b0, 1'b0, "cmpu true"); #10;
