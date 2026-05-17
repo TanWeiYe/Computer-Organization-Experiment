@@ -47,6 +47,15 @@ module tb_alu_reg_datapath;
         $dumpvars(0, tb_alu_reg_datapath);
         // Ensure regfile internal registers are dumped so regs[0..7] appear in VCD
         $dumpvars(0, tb_alu_reg_datapath.dut.regfile);
+        // Explicitly dump each memory element (some simulators require explicit names)
+        $dumpvars(0, tb_alu_reg_datapath.dut.regfile.regs[0]);
+        $dumpvars(0, tb_alu_reg_datapath.dut.regfile.regs[1]);
+        $dumpvars(0, tb_alu_reg_datapath.dut.regfile.regs[2]);
+        $dumpvars(0, tb_alu_reg_datapath.dut.regfile.regs[3]);
+        $dumpvars(0, tb_alu_reg_datapath.dut.regfile.regs[4]);
+        $dumpvars(0, tb_alu_reg_datapath.dut.regfile.regs[5]);
+        $dumpvars(0, tb_alu_reg_datapath.dut.regfile.regs[6]);
+        $dumpvars(0, tb_alu_reg_datapath.dut.regfile.regs[7]);
     end
     
     // 时钟生成
