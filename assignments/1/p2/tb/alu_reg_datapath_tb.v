@@ -172,6 +172,10 @@ module tb_alu_reg_datapath;
         rs2 = 3'b100;
         rd = 3'b111;
         alu_op = 3'b010; // AND
+        // Pulse reg_we to write R7 this cycle
+        reg_we = 1'b1;
+        @(posedge clk);
+        reg_we = 1'b0;
         #5;
         $display("  src_a=%h, src_b=%h, alu_result=%h, zero=%b", src_a, src_b, alu_result, zero);
         #5;
