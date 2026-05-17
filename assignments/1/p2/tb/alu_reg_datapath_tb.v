@@ -45,6 +45,8 @@ module tb_alu_reg_datapath;
     initial begin
         $dumpfile("wave/p2.vcd");
         $dumpvars(0, tb_alu_reg_datapath);
+        // Ensure regfile internal registers are dumped so regs[0..7] appear in VCD
+        $dumpvars(0, tb_alu_reg_datapath.dut.regfile);
     end
     
     // 时钟生成
