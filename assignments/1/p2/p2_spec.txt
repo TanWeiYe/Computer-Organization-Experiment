@@ -1,0 +1,617 @@
+
+--- PAGE 1 ---
+࠹ෘࠏቆӮაุ༢ܒࢲज़ଽൌ࡬# 1
+ิࢌൈࡗ: 23:59đ5ᄅ 24ರ, 2026
+ݚފն࿐࠹ෘࠏაೈࡱ࿐ჽ
+ലૼ:ᄝЧՑቔြᇏ౨ቓ֞ၛ༯ׄࠫ: 
+•౨ࡼ࿐ބݼྠ଀ౢ༉֥ཿᄝቔြֻ၂်đ౨۳ԛབྷ༥֥ᇿ൤đ࿸࣌Ӓ༛b
+•ቔြླิࢌჷ઒a ҩ൫ս઒a ᄎྛބݔࢲൌဒБۡb ౨ࡼ෮ႵิࢌҋਘյЇູ၂۱ zip
+ࡱڸđѩ๙׈ݖሰႯؿࡱෂ۳಩ज़࢝ഽbࡱڸଁ଀۬ൔсྶູ ”࿐ݼ-ྠ଀-࠹ቆൌ࡬
+ቔြ1.zip”bzipࡱڸᇏႋЇݣ PDF۬ൔ֥ൌဒБۡa Verilogჷ઒໓ބࡱҩ൫ս઒
+໓ࡱbᄎྛݔࢲႋၛࢩ๭ྙൔ٢ೆ PDFൌဒБۡᇏđѩٟ࡯ܱؓᆇࣉݔࢲྛඪૼb
+౨ᇿၩđൌဒБۡᆺࢤ൳ PDF۬ൔđჷ઒໓ބࡱҩ൫ս઒໓ࡱсྶູ *.v໓ࡱđ࿢෪
+Їᆺࢤ൳ zip۬ൔđ҂ࢤ൳ః෰࿢෪໓۬ࡱൔb
+•౨ಒЌ׈ሰႯࡱѓี࿸۬቎࿖ၛ༯۬ൔğ ”࿐ݼ-ྠ଀-࠹ቆൌ࡬ቔြ 1”b೏ၹႯࡱѓ
+ีࡱڸࠇଁ଀҂֝ٓܿᇁቔြ໭ࠣمൈק໊đॖି႕ཙӮ࠺ࠛ੣b
+•ЧՑቔြ҂ࢤ൳Ӿࢌđ೏ၹग़ܴჰၹ໭مປӮđ౨ิభ 24ཬൈ৳༢঺ഽѩඪૼ౦ঃb
+ᄎෘֆჭაթԥ༢๤ሸކഡ࠹
+࿐༝ଢѓ
+•ܥ܇భ໴ᇛ෮࿐ᄎෘఖഡمٚ࠹đ৘ࢳ ALUҠቔ઒aѓᆽ໊ބቆކઆࠠᄎෘĠ
+•৘࠷ࢳթఖ؀֥ؐཿࠏᇅđၛࠣᄎෘݔࢲཿ࠷߭թఖݖ֥ӱĠ
+•৘ࢳඔऌթԥఖ؀֥ཿ॥ᇅaֹᆶളӮބ Load/Store ࠎЧඔऌ๙ਫ਼Ġ
+•ᅧ໤ᄎෘֆჭa࠷թఖބؐթԥఖᆭ֥ࡗඔऌ৵ܱࢤ༢Ġ
+•ିܔщཿ testbench ဒᆣ؟ᇛ௹Ҡቔ྽ਙᇏ֥ඔऌэ߄b
+1
+--- PAGE 2 ---
+ีଢ၂ğ 16໊ۿ؟ି ALUഡ࠹
+౨ഡ࠹၂۱ 16໊ۿ؟ିෘඌઆࠠֆჭ ALUbھALUࢤ൬ਆ۱ 16໊Ҡቔඔđ۴ऌҠቔ઒
+ປӮ҂๝ᄎෘđѩൻԛᄎෘࠣݔࢲሑ෿ѓᆽ໊b
+ଆॶࢤ१ೂ༯ğ
+1module alu16 (
+2 input wire [15:0] a ,
+3 input wire [15:0] b ,
+4 input wire [2:0] alu _op ,
+5 output reg [15:0] result ,
+6 output wire zero ,
+7 output wire carry ,
+8 output wire negative ,
+9 output wire overflow
+10 ) ;
+Listing 1: 16 ໊ALUଆॶࢤ१
+ALUۿିေ౰ೂ༯ğ
+alu_op ۿି ඪૼ
+3'b000 مࡆ result = a + b
+3'b001 مࡨ result = a - b
+3'b010 ο໊ა result = a & b
+3'b011 ο໊ࠇ result = a | b
+3'b100 ο໊ၳࠇ result = a ^ b
+3'b101 આࠠቐ၍ result = a << b[3:0]
+3'b110 આࠠႷ၍ result = a >> b[3:0]
+3'b111 ཬႿбࢠ ೏a < bđᄵresult = 16'h0001 đڎᄵູ 16'h0000
+ѓᆽ໊ေ౰ೂ༯ğ
+•zeroğ֒result == 16'h0000 ൈູ1đڎᄵູ 0Ġ
+•negative ğ֩Ⴟresult[15] Ġ
+•carryğࣇᄝمࡨބمࡆൈႵၩၬbمࡆൈіൕቋ໊ۚࣉ໊đمࡨൈіൕ໭ࢹ໊Ġ
+•overflow ğࣇᄝႵބمࡆݼژႵمࡨݼژൈႵၩၬđః෰Ҡቔൻԛ 0Ġ
+•ః෰આࠠᄎෘa၍໊ᄎෘބбࢠᄎෘᇏđ carryބoverflow नൻԛ0b
+2
+--- PAGE 3 ---
+ഡ࠹ေ౰ೂ༯ğ
+•൐Ⴈalways @(*) ބcaseეओൌགྷ ALUᇶઆࠠĠ
+•مࡨބمࡆླေॉ੮ carryބoverflow Ġ
+•бࢠҠቔο໭ݼژඔбࠧࢠॖĠ
+•ླေ۳ԛౢ༉ᇿ൤đඪૼૄ၂ᇕҠቔ઒ؓႋۿ֥ିĠ
+•҂ᄍྸᆺൌགྷمࡆaބمࡨઆࠠაࠇđсྶປᆜൌགྷіᇏ 8ᇕҠቔb
+ҩ൫ս઒ေ౰ೂ༯ğ
+1.ҩ൫௴๙مࡆđ২ೂ 16'h0003 + 16'h0005 Ġ
+2.ҩ൫Ӂളࣉ໊مࡆ֥đ২ೂ 16'hFFFF + 16'h0001 Ġ
+3.ҩ൫Ⴕݼژၮԛمࡆ֥đ২ೂ 16'h7FFF + 16'h0001 Ġ
+4.ҩ൫௴๙مࡨđ২ೂ 16'h0008 - 16'h0003 Ġ
+5.ҩ൫ݔࢲູ 0مࡨ֥đဒᆣ zeroѓᆽĠ
+6.ҩ൫ο໊აaο໊ࠇaο໊ၳࠇĠ
+7.ҩ൫આࠠቐ၍ބઆࠠႷ၍Ġ
+8.ҩ൫ཬႿбۿࢠିb
+Бۡေ౰ೂ༯ğ
+•ࢳ൤zeroacarryanegative ބoverflow ඹ۱ѓᆽ໊ݣ֥ၬĠ
+•ඪૼႵݼژၮԛބ໭ࣉݼژ໊֥౵љĠ
+•۳ԛٟ࡯ܱᆇѯྙđѩඪૼૄቆҩ൫൞ކژڎყ௹b
+3
+--- PAGE 4 ---
+ีଢؽğ ALUა࠷թఖؐቆ֥ކඔऌ๙ਫ਼ഡ࠹
+౨ᄝีଢ၂ ALUࠎ֥Ԥഈđഡ࠹၂۱Ї࠷ݣթఖބؐ ALU߄ࡥ֥ᄎෘඔऌ๙ਫ਼bھඔऌ
+๙ਫ਼ିܔՖ࠷թఖؐᇏ؀౼ਆ۱Ҡቔඔđෂೆ ALUࣉྛᄎෘđѩݔࢲࡼཿ࠷߭թఖؐb
+ЧีႨႿ৘ࢳ CPUᇏቋࠎЧ࠷֥թఖ྘ᄎෘݖӱğ
+؀౼ჷ࠷թఖ →ALUᄎෘ→ཿ߭ଢ࠷֥թఖ
+ଆॶࢤ१ೂ༯ğ
+1module alu _reg _datapath (
+2 input wire clk ,
+3 input wire rst _n ,
+4
+5 input wire reg _we ,
+6 input wire [2:0] rs1 ,
+7 input wire [2:0] rs2 ,
+8 input wire [2:0] rd ,
+9 input wire [2:0] alu _op ,
+10
+11 input wire init _we ,
+12 input wire [2:0] init _addr ,
+13 input wire [15:0] init _data ,
+14
+15 output wire [15:0] src _a ,
+16 output wire [15:0] src _b ,
+17 output wire [15:0] alu _result ,
+18 output wire zero ,
+19 output wire carry ,
+20 output wire negative ,
+21 output wire overflow
+22 ) ;
+Listing 2: ALU ა࠷թఖؐቆކඔऌ๙ਫ਼ଆॶࢤ१
+ଽ҆ܒࢲေ౰ೂ༯ğ
+•ଽ҆Їݣ၂۱ 8x16࠷թఖؐĠ
+•ଽ҆Їݣ“ ีଢ၂”ഡ֥࠹alu16ଆॶĠ
+•࠷թఖؐЇݣ 8۱16໊࠷թఖđщݼູ R0֞R7Ġ
+•R0קູܿӈਬ࠷թఖđ؀౼ൈޚູ 0đؓR0֥ཿೆ໭ིĠ
+4
+--- PAGE 5 ---
+•rs1ބrs2ٳљᆷקਆ۱ჷ࠷թఖĠ
+•rdᆷקଢ࠷֥թఖĠ
+•src_aބsrc_bٳљູՖ࠷թఖ؀ؐԛ֥ਆ۱ҠቔඔĠ
+•alu_result ູALUൻԛݔࢲĠ
+•֒reg_we = 1 ൈđᄝൈᇒഈശခࡼ alu_result ཿೆrdᆷ࠷֥קթఖĠ
+•init_we ႨႿҩ൫ൈԚ൓࠷߄թఖؐb ֒ init_we = 1 ൈđ ႋࡼ init_data ཿೆinit_addr
+ᆷ࠷֥קթఖĠ
+•೏init_we ބreg_we๝ൈູ1đקܿinit_we Ⴊ༵b
+࠷թఖࢤؐ१ࡹၰೂ༯ğ
+1module regfile8x16 (
+2 input wire clk ,
+3 input wire rst _n ,
+4 input wire we ,
+5 input wire [2:0] waddr ,
+6 input wire [15:0] wdata ,
+7 input wire [2:0] raddr1 ,
+8 input wire [2:0] raddr2 ,
+9 output wire [15:0] rdata1 ,
+10 output wire [15:0] rdata2
+11 ) ;
+Listing 3: 8x16 ࠷թఖؐଆॶࢤ१
+࠷թఖؐഡ࠹ေ౰ೂ༯ğ
+•ཿҠቔᄝൈᇒഈശခປӮĠ
+•؀Ҡቔູቆކઆ؀ࠠԛĠ
+•گ໊ൈ෮Ⴕ࠷թఖౢਬĠ
+•R0ޚູ0đ҂ିФཿೆĠ
+•֒๝၂ᇛ௹ଽཿೆֹᆶაֹ؀ᆶཌྷ๝đѩ౏ཿ൐ିႵིൈđ؊؀१ႋൻԛࡼࠧཿೆ֥
+ྍඔऌđھઆࠠӫູཿ؀ުகਫ਼b
+5
+--- PAGE 6 ---
+ҩ൫ေ౰ೂ༯ğ
+౨ᄝtestbench ᇏᇀഒປӮೂ༯Ҡቔ྽ਙğ
+1.گ໊༢๤đဒᆣ෮Ⴕ࠷թఖԚᆴູ 0Ġ
+2.൐Ⴈinit_we Ԛ൓߄ğ
+•R1 = 16'h0005
+•R2 = 16'h0003
+•R3 = 16'h00F0
+•R4 = 16'h0F0F
+3.ᆳྛR5 = R1 + R2 đ௹ຬR5 = 16'h0008 Ġ
+4.ᆳྛR6 = R5 - R2 đ௹ຬR6 = 16'h0005 Ġ
+5.ᆳྛR7 = R3 & R4 đ௹ຬR7 = 16'h0000 đ๝ൈဒᆣ zeroѓᆽĠ
+6.Ӈ൫ᆳྛ R0 = R1 + R2 đᄜ؀౼ R0đဒᆣఃಯູ 0Ġ
+7.ܒᄯ๝ᇛ௹؀ཿ๝၂࠷թఖ֥౦ঃđဒᆣகਫ਼આࠠ൞ڎᆞಒb
+Бۡေ౰ೂ༯ğ
+•߂ԛЧี֥ඔऌ๙ਫ਼๭Ġ
+•Ⴈі۬ਙԛૄ၂҄Ҡቔؓႋ֥ rs1ars2ardaalu_opބreg_weĠ
+•ඪૼ࠷թఖؐa ALUބཿ߭ਫ਼ࣥᆭ֥ࡗඔऌܱ༢Ġ
+•ࢳ൤ູ൉હླေ init_weĠ
+•ࢳ൤ཿ؀ުகਫ਼֥ቔႨĠ
+•۳ԛٟᆇѯྙѩѓᇿ࡯ܱᇛ௹b
+6
+--- PAGE 7 ---
+ีଢ೘ğᆦӻ Load/Store ߄ࡥ֥ᄎෘაթԥඔऌ๙ਫ਼ഡ࠹
+౨ᄝีଢࠎ֥ؽԤഈ࠿࿃ঔᅚđࡆೆඔऌթԥఖđൌགྷ၂۱ᆦӻ ALUᄎෘaLoadބStore
+Ҡቔ߄ࡥ֥ඔऌ๙ਫ਼bھଆॶ҂ေ౰ൌགྷປᆜᆷ਷ၲ઒ఖđ֌ླေ๙ݖ॥ᇅྐݼປӮ҂๝
+ো྘֥ඔऌԮൻb
+Чี൞ЧՑቔြ֥ሸކีbଢѓ൞৘ࢳೂ༯೘োҠቔğ
+•࠷թఖ྘ᄎෘğ rd = rs1 op rs2
+•StoreҠቔğMem[rs1 + imm] = rs2
+•LoadҠቔğrd = Mem[rs1 + imm]
+ଆॶࢤ१ೂ༯ğ
+1module ls _datapath (
+2 input wire clk ,
+3 input wire rst _n ,
+4
+5 input wire reg _we ,
+6 input wire mem _we ,
+7 input wire mem _to _reg ,
+8 input wire alu _src _imm ,
+9
+10 input wire [2:0] rs1 ,
+11 input wire [2:0] rs2 ,
+12 input wire [2:0] rd ,
+13 input wire [15:0] imm ,
+14 input wire [2:0] alu _op ,
+15 input wire [1:0] byte _en ,
+16
+17 input wire init _we ,
+18 input wire [2:0] init _addr ,
+19 input wire [15:0] init _data ,
+20
+21 output wire [15:0] src _a ,
+22 output wire [15:0] src _b ,
+23 output wire [15:0] alu _result ,
+24 output wire [15:0] mem _rdata ,
+25 output wire [15:0] wb _data ,
+26 output wire zero
+27 ) ;
+7
+--- PAGE 8 ---
+Listing 4: ᆦӻLoad/Store ߄ࡥ֥ඔऌ๙ਫ਼ଆॶࢤ१
+ଽ҆ଆॶေ౰ೂ༯ğ
+•ଽ҆Їݣีଢ၂֥ alu16Ġ
+•ଽ҆Їݣีଢؽᇏ֥ regfile8x16 Ġ
+•ଽ҆Їݣ၂۱ 32x16ඔऌթԥఖĠ
+•ඔऌթԥఖֹᆶ൐Ⴈ alu_result[4:0] Ġ
+•ඔऌթԥఖཿೆඔऌটሱ src_bĠ
+•ཿ࠷߭թఖ֥ؐඔऌႮ mem_to_reg ࿊ᄴğ
+1.֒mem_to_reg = 0 ൈđཿ߭ ALUݔࢲĠ
+2.֒mem_to_reg = 1 ൈđཿ߭ඔऌթԥఖ؀ԛ֥ඔऌb
+•ALUؽֻҠቔඔႮ alu_src_imm ࿊ᄴğ
+1.֒alu_src_imm = 0 ൈđؽֻҠቔඔູ src_bĠ
+2.֒alu_src_imm = 1 ൈđؽֻҠቔඔູ immb
+ඔऌթԥఖࢤ१ࡹၰೂ༯ğ
+1module data _mem32x16 (
+2 input wire clk ,
+3 input wire mem _we ,
+4 input wire [4:0] addr ,
+5 input wire [15:0] wdata ,
+6 input wire [1:0] byte _en ,
+7 output reg [15:0] rdata
+8) ;
+Listing 5: 32x16 ඔऌթԥఖଆॶࢤ१
+ඔऌթԥఖഡ࠹ေ౰ೂ༯ğ
+•൐Ⴈreg [15:0] mem [0:31]; קၬ32۱16໊թԥֆჭĠ
+•ཿҠቔᄝൈᇒഈശခປӮĠ
+8
+--- PAGE 9 ---
+•؀ҠቔҐႨቆކઆ؀ࠠԛĠ
+•֒byte_en = 2'b11 ൈཿೆປᆜ 16໊ඔऌĠ
+•֒byte_en = 2'b01 ൈᆺཿೆ֮ 8໊Ġ
+•֒byte_en = 2'b10 ൈᆺཿೆۚ 8໊Ġ
+•֒byte_en = 2'b00 ൈ҂ྩڿթԥఖଽಸĠ
+•ॖᄝinitial ॶᇏࡼթԥఖԚ൓߄ູ 0đьႿٟᆇb
+೘োҠቔ֥॥ᇅྐࡹݼၰೂ༯ğ
+Ҡቔো྘ reg_we mem_we mem_to_reg alu_src_imm alu_op
+ALUᄎෘ 1 0 0 0 Ⴎᄎෘো྘थק
+Load 1 0 1 1 مࡆ
+Store 0 1 ಩ၩ 1 مࡆ
+ҩ൫ေ౰ೂ༯ğ
+౨ᄝtestbench ᇏᇀഒປӮၛ༯Ҡቔ྽ਙğ
+1.گ໊༢๤Ġ
+2.൐Ⴈinit_we Ԛ൓࠷߄թఖğ
+•R1 = 16'h0004
+•R2 = 16'h0006
+•R3 = 16'hABCD
+3.ᆳྛ࠷թఖ྘ ALUᄎෘğR4 = R1 + R2 đ௹ຬR4 = 16'h000A Ġ
+4.ᆳྛ࠷թఖ྘ ALUᄎෘğR5 = R4 - R1 đ௹ຬR5 = 16'h0006 Ġ
+5.ᆳྛStoreҠቔğࡼ R3ཿೆֹᆶ R1 + 0đࠧඔऌթԥఖֹᆶ 5'd4Ġ
+6.ᆳྛLoadҠቔğՖֹᆶ R1 + 0؀ԛඔऌѩཿೆ R6đ௹ຬR6 = 16'hABCD Ġ
+7.ᆳྛ֮ሳࢫ Storeğ ࡼଖ࠷۱թఖ֥֮ሳࢫཿೆֹᆶ R1 + 1đ ဒᆣbyte_en = 2'b01
+൞ڎളིĠ
+8.ᆳྛۚሳࢫ Storeğ ࡼଖ࠷۱թఖ֥ۚሳࢫཿೆֹᆶ R1 + 1đ ဒᆣbyte_en = 2'b10
+൞ڎളིĠ
+9
+--- PAGE 10 ---
+9.Ӈ൫ཿೆ R0đဒᆣR0ಯູ0Ġ
+10.ᇀഒܒᄯ၂Ց ALUݔࢲູ0֥Ҡቔđဒᆣ zeroѓᆽb
+Бۡေ౰ೂ༯ğ
+•߂ԛປᆜඔऌ๙ਫ਼๭č౨Ⴈ Microsoft Visio ࠇᆀPowerpoint ߂๭Ď đЇও࠷թఖؐa
+ALUaඔऌթԥఖބཿ؟߭ਫ਼࿊ᄴఖĠ
+•Ⴈі۬ਙԛૄ၂҄ҩ൫Ҡቔ֥॥ᇅྐݼđ Їও reg_weamem_weamem_to_reg aalu_src_imm a
+alu_opބbyte_enĠ
+•ࢳ൤LoadބStoreҠቔᇏALUູ൉હႨႿֹᆶ࠹ෘĠ
+•ඪૼmem_to_reg ބalu_src_imm ਆ؟۱ਫ਼࿊ᄴ॥ᇅྐ֥ݼቔႨĠ
+•ࢳ൤ሳࢫཿ൐ିᄝթԥ༢๤ᇏ֥ၩၬĠ
+•۴ऌٟᆇѯྙඪૼඔऌೂޅՖ࠷թఖࣉؐೆ ALUaೂޅཿೆթԥఖđၛࠣೂޅՖթԥ
+ఖ؀ԛѩཿ࠷߭թఖؐb
+ิࢌҋਘඪૼ
+•Verilogս઒໓ࡱč .vĎ Ġ
+•Testbench ս઒໓ࡱč .vĎ Ġ
+•ٟᆇѯྙࢩ๭đೂ ModelSim aVivadoaQuartusĠ
+•ൌဒБۡ PDFđЇݣഡ࠹ඪૼaଆॶࢤ१ඪૼaҩ൫ࢩ๭a࡯ܱս઒ࢳ൤ٟބᆇݔࢲ
+ٳ༅Ġ
+•ૄ၂֡ีनླඪૼଆॶۿିaൻೆൻԛ؊१ݣၬaҩ൫Ⴈ২ഡٟބ࠹ᆇݔࢲ൞ކژڎ
+ყ௹b
+௟ٳѓሙ
+•ีଢ၂ğ 30ٳĠ
+•ีଢؽğ 30ٳĠ
+•ีଢ೘ğ 40ٳĠ
+10
+--- PAGE 11 ---
+ีଢ೘བྷ༥ඪૼაࢳี҄ᇧ
+ᆦӻ Load/Store ߄ࡥ֥ᄎෘაթԥඔऌ๙ਫ਼
+ีଢ೘ေ౰ഡ֥࠹൞၂۱ ᆦӻᄎෘa Loadބ Store߄ࡥ֥ඔऌ๙ਫ਼ b෱҂൞၂۱ປᆜ
+CPUđ ၹູ෱ીႵӱ྽࠹ඔఖa ᆷ਷թԥఖa ᆷ਷ၲ઒ఖބ॥ᇅఖĠ ֌൞෱ၘࣜЇݣਔ CPU
+ᆳྛᆷ਷ൈቋނྏ֥೘۱ඔऌ҆ࡱğ ࠷թఖؐa ALUބඔऌթԥఖ b
+୆ૌॖၛϜᆃ۱ଆॶ৘ࢳູ၂۱o൭׮॥ᇅϱ֥ CPUᆳྛ҆ࡱp bຓ҆॥ᇅྐݼཌྷ֒Ⴟ
+ၘࣜФၲ઒֥ݺ॥ᇅଁ਷b২ೂđ reg_we॥ᇅ൞ڎཿ࠷߭թఖđ mem_we॥ᇅ൞ڎཿଽթđ
+mem_to_reg ॥ᇅཿ࠷߭թఖ֥ඔऌটሱ ALUߎ൞ଽթđ alu_src_imm ॥ᇅALUؽֻ֥
+۱Ҡቔඔটሱ࠷թఖߎ൞৫ࠧඔb୆ૌ҂ླေഡ࠹ᆷ਷ၲ઒ఖđᆺླေ۴ऌᆃུ॥ᇅྐݼđ
+Ϝඔऌᆞಒֹෂؓ֞ႋ҆ࡱb
+Чีቋᇔေൌགྷ೘োࠎЧҠቔbֻ၂ো൞௴๙࠷թఖᄎෘđ২ೂ R4 = R1 + R2 đඔऌՖ
+࠷թఖ؀ؐԛđݖࣜ ALUᄎෘުᄜཿ࠷߭թఖؐbؽֻো൞ StoreҠቔđ২ೂ Mem[R1 +
+0] = R3đఃᇏALUႨট࠹ෘଽթֹᆶ R1 + 0đᆇᆞཿೆଽթ֥ඔऌটሱ R3bֻ೘ো൞
+LoadҠቔđ২ೂ R6 = Mem[R1 + 0] đఃᇏALUಯಖႨট࠹ෘଽթֹᆶđطቋᇔཿ߭ R6
+֥ඔऌটሱඔऌթԥఖb
+෮ၛđᆃ֡ีॉҳ֥҂൞ଖ၂ܛ۱৫ଆॶđط൞ॉҳ୆ૌ൞ڎ৘ࢳğ ࠷թఖؐೂޅิ܂Ҡ
+ቔඔđ ALUೂޅປӮᄎෘֹࠇᆶ࠹ෘđඔऌթԥఖೂ؀ޅཿđၛࠣཿ߭๙ਫ਼ೂޅ࿊ᄴᆞ
+ಒ֥ඔऌটჷ bᆃᆞ൞ު࿃৘ࢳֆᇛ௹ CPUඔऌ๙ਫ਼ࠎ֥Ԥb
+ؽaࢳี҄ᇧ
+ֻ၂҄ğ༵ປӮѩဒᆣ ALUଆॶ
+༵҂ေࠤሢཿפҪଆॶb൮༵ಒಪีଢ၂ᇏ֥ alu16ିܔֆ۽׿ቔb
+ALUᇀഒေᆦӻၛ༯ۿିğ
+مࡆaمࡨaο໊აaο໊ࠇaο໊ၳࠇaቐ၍aႷ၍aбࢠ
+ᄝีଢ೘ᇏđ ALUႵਆ۱ቔႨğ
+•௴๙ᄎෘൈğ࠹ෘቋᇔݔࢲđ২ೂ R4 = R1 + R2 Ġ
+•Load/Store ൈğ࠹ෘଽթֹᆶđ২ೂ R1 + imm b
+ၹՎ୆ေૼಒ၂ׄğ ALU֥ൻԛ҂၂קሹ൞ေཿ࠷߭թఖbႵൈީ෱ᆺ൞၂۱ଽթֹᆶb
+ࡹၰ༵Ⴈ testbench ֆ׿ҩ൫ğ
+11
+--- PAGE 12 ---
+116 ' h0004 + 16 ' h0006 = 16 ' h000A
+216 ' h000A - 16 ' h0004 = 16 ' h0006
+316 ' h00F0 & 16 ' h0F0F = 16 ' h0000
+Listing 6: ALU ҩ൫ൕ২
+ಒಪALUᆞಒުđᄜࣉೆ༯၂҄b
+ؽֻ҄ğປӮѩဒᆣ࠷թఖؐଆॶ
+࠷թఖؐॖၛ৘ࢳູ၂۱ཬ྘࠷թఖඔቆđ৚૫Ⴕ 8۱16໊࠷թఖğ
+R0, R1, R2, R3, R4, R5, R6, R7
+෱ླေᆦӻğ
+•ਆ؊؀۱१ğ๝ൈ؀ԛ rs1ބrs2ᆷ࠷֥קթఖĠ
+•၂۱ཿ؊१ğϜݔࢲཿೆ rdᆷ࠷֥קթఖb
+ఃᇏR0ေഡ࠹Ӯӈਬ࠷թఖğ
+•؀౼R0ൈႥჹ֤֞ 16'h0000 Ġ
+•ཿೆR0ൈႋ֒໭ིb
+࠷թఖࠎ֥ؐЧྛູ൞ğ
+1rdata1 = Reg [ rs1 ]
+2rdata2 = Reg [ rs2 ]
+3
+4if write enable is valid :
+5 at the rising edge of clk :
+6 Reg [ rd ] = write _back _data
+Listing 7: ࠷թఖࠎؐЧྛູ
+ᇿၩğཿೆ๙ӈ൞๝֥҄đ္ࣼ൞сྶ֞֩ൈᇒഈശခҌളིĠ؀ԛ๙ӈ൞ቆކઆࠠđ္
+ࣼ൞ֹ؀ᆶэު߄đ؀ඔऌ߶ෛᆭэ߄b
+ࡹၰֆ׿ҩ൫ğ
+12
+--- PAGE 13 ---
+1Initialize R1 = 16 ' h0004
+2Initialize R2 = 16 ' h0006
+3Read R1 and R2 , and check whether the outputs are correct
+4Try to write R0 , and check whether R0 is still 0
+Listing 8: ࠷թఖؐҩ൫ൕ২
+ֻ೘҄ğປӮѩဒᆣඔऌթԥఖଆॶ
+ඔऌթԥఖॖၛ৘ࢳູ၂ࡥ۱ֆ RAMbЧีࡹၰൌགྷ 32۱16໊թԥֆჭğ
+Mem[0]֞Mem[31]
+ֹᆶ൞5໊đၹູ 5໊ࣉؽᇅॖၛіൕ 32ֹ۱ᆶb
+ඔऌթԥఖླေᆦӻğ
+•؀Ҡቔğ۴ऌֹᆶ؀ԛ Mem[addr] Ġ
+•ཿҠቔğᄝ mem_we = 1 ൈđϜඔऌཿೆ Mem[addr] Ġ
+•ሳࢫཿ൐ିğ byte_en ॥ᇅཿۚሳࢫa֮ሳࠇࢫປᆜ 16໊b
+ఃᇏbyte_en ݣ֥ၬ൞ğ
+byte_en ݣၬ
+2'b11 ཿປᆜ16໊
+2'b01 ᆺཿ֮8໊
+2'b10 ᆺཿۚ8໊
+2'b00 ҂ཿ
+ࡹၰֆ׿ҩ൫ğ
+1Write 16 ' hABCD to Mem [4] , then read it back .
+2Expected result : 16 ' hABCD
+3
+4Write only the low byte 16 ' h00EF to Mem [4].
+5Expected result : 16 ' hABEF
+6
+7Write only the high byte 16 ' h1200 to Mem [4].
+8Expected result : 16 ' h12EF
+Listing 9: ඔऌթԥఖҩ൫ൕ২
+13
+--- PAGE 14 ---
+ֻඹ҄ğᄝפҪଆॶᇏ৵ࢤ೘۱ሰଆॶ
+֒ALUa࠷թఖބؐඔऌթԥఖ׻ିֆ۽׿ቔުđᄜཿפҪଆॶ ls_datapath b
+פҪଆॶေປӮ֥҂൞گᄖ࠹ෘđط൞ ᆞಒ৵ཌބᆞಒ࿊ᄴඔऌটჷ b
+୆ླေᄝפҪଆॶ৚ሙСࠫোଽ҆ྐݼğ
+1wire [15:0] src _a ;
+2wire [15:0] src _b ;
+3wire [15:0] alu _b ;
+4wire [15:0] alu _result ;
+5wire [15:0] mem _rdata ;
+6wire [15:0] wb _data ;
+7wire [4:0] mem _addr ;
+Listing 10: פҪଆॶଽ҆ྐݼ
+෱ૌݣ֥ၬٳљ൞ğ
+ྐݼݣ ၬ
+src_a Ֆrs1؀ԛ࠷֥թఖඔऌ
+src_b Ֆrs2؀ԛ࠷֥թఖඔऌ
+alu_b ALU۱ؽֻ֥Ҡቔඔ
+alu_result ALU࠹ෘݔࢲ
+mem_rdata ඔऌթԥఖ؀ԛ֥ඔऌ
+wb_data ቋᇔཿ࠷߭թఖ֥ؐඔऌ
+mem_addr ඔऌթԥఖֹᆶ
+פҪଆॶᇏቋ֥࡯ܱ൞೘۱࿊ᄴܱ༢b
+ֻ໴҄ğൌགྷ ALUؽֻҠቔඔ࿊ᄴ
+ALUֻ֥၂۱Ҡቔඔקܥটሱ src_ab
+ALU۱ؽֻ֥ҠቔඔႵਆᇕটჷğ
+•௴๙ALUᄎෘൈđটሱ src_bĠ
+•Load/Store ࠹ෘֹᆶൈđটሱ immb
+ၹՎॖၛᆃဢ৘ࢳğ
+1assign alu _b = alu _src _imm ? imm : src _b ;
+Listing 11: ALU ؽֻҠቔඔ࿊ᄴ
+14
+--- PAGE 15 ---
+֒alu_src_imm = 0 ൈğ
+ALU࠹ෘsrc_a op src_b đ২ೂR4 = R1 + R2 b
+֒alu_src_imm = 1 ൈğ
+ALU࠹ෘsrc_a op imm đ২ೂֹᆶ R1 + 0b
+ֻੂ҄ğൌགྷඔऌթԥఖֹᆶ࿊ᄴ
+ඔऌթԥఖᆺႵ 32۱ֆჭđၹՎֹᆶᆺླေ 5໊b
+ALUൻԛ൞16໊đ෮ၛีଢקܿ൐Ⴈ֮ 5໊ቔູթԥఖֹᆶğ
+1assign mem _addr = alu _result [4:0];
+Listing 12: ඔऌթԥఖֹᆶ࿊ᄴ
+ᆃіൕğ
+ALU࠹ෘԛݔࢲ֥ቔູ٠թֹᆶđ֌ඔऌթԥఖᆺ൐Ⴈఃᇏ֮ 5໊b
+২ೂğ
+1R1 = 16 ' h0004
+2imm = 16 ' h0000
+3alu _result = 16 ' h0004
+4mem _addr = 5 ' d4
+Listing 13: ֹᆶ࠹ෘൕ২
+ֻ௾҄ğൌགྷཿ߭ඔऌ࿊ᄴ
+ཿ࠷߭թఖ֥ඔऌႵਆᇕটჷğ
+•௴๙ALUᄎෘğཿ߭ ALUݔࢲĠ
+•LoadҠቔğཿ߭ඔऌթԥఖ؀ԛ֥ඔऌb
+ၹՎླေ၂۱ཿ؟߭ਫ਼࿊ᄴఖğ
+1assign wb _data = mem _to _reg ? mem _rdata : alu _result ;
+Listing 14: ཿ߭ඔऌ࿊ᄴ
+15
+--- PAGE 16 ---
+֒mem_to_reg = 0 ൈğ
+wb_data = alu_result
+֒mem_to_reg = 1 ൈğ
+wb_data = mem_rdata
+ᆃ൞LoadҠቔିڎᆞಒປӮ࡯ܱ֥bೂݔ Loadൈອ࠺Ϝ mem_to_reg ഡູ1đ߶ࣼϜֹ
+ᆶཿ࠷߭թఖđط҂൞Ϝଽթඔऌཿ࠷߭թఖb
+ֻϖ҄ğԩ৘࠷թఖԚ൓߄ཿೆ
+ีଢᇏႵ init_weainit_addr ainit_data đଢ֥൞ಞ testbench ॖၛ༵࠷۳թఖؐཿೆ
+Ԛ൓ᆴb
+ၹູᆞӈᄎྛൈཿ࠷߭թఖ֥൞ rdބwb_datađ Ԛ൓߄ൈཿೆ֥൞ init_addr ބinit_data đ
+෮ၛླေ࿊ᄴᆇᆞෂೆ࠷թఖؐཿ؊१ֹ֥ᆶބඔऌb
+ॖၛοᆃ۱આࠠ৘ࢳğ
+1if init _we = 1:
+2 write init _data to init _addr
+3else :
+4 normal write - back , write wb _data to rd
+Listing 15: Ԛ൓߄ཿೆઆࠠ
+ؓႋܱ༢ॖၛཿӮğ
+1assign real _reg _we = init _we ? 1 ' b1 : reg _we ;
+2assign real _waddr = init _we ? init _addr : rd ;
+3assign real _wdata = init _we ? init _data : wb _data ;
+Listing 16: ࠷թఖཿ؊१࿊ᄴ
+ᆃ৚init_we ֥Ⴊ༵ۚࠩႿ reg_web္ࣼ൞ඪđᆺေԩႿԚ൓؍ࢨ߄đ༵ࣼປӮ࠷թఖ
+Ԛ൓߄đ҂ᆳྛᆞӈཿ߭b
+ֻࣴ҄ğ৘ࢳ೘োҠቔ֥॥ᇅྐݼ
+1.௴๙ ALUᄎෘ
+২ೂğ
+16
+--- PAGE 17 ---
+R4 = R1 + R2
+॥ᇅྐݼႋ֒൞ğ
+॥ᇅྐݼ ౼ᆴ
+reg_we 1
+mem_we 0
+mem_to_reg 0
+alu_src_imm 0
+alu_op مࡆ
+ࢳ൤ೂ༯ğ
+•ླေཿ࠷߭թఖđ෮ၛ reg_we = 1 Ġ
+•҂ཿଽթđ෮ၛ mem_we = 0 Ġ
+•ཿ߭ඔऌটሱ ALUđ෮ၛmem_to_reg = 0 Ġ
+•ALUؽֻҠቔඔটሱ rs2đ෮ၛalu_src_imm = 0 b
+2. Store Ҡቔ
+২ೂğ
+Mem[R1 + 0] = R3
+॥ᇅྐݼႋ֒൞ğ
+॥ᇅྐݼ ౼ᆴ
+reg_we 0
+mem_we 1
+mem_to_reg ಩ၩ
+alu_src_imm 1
+alu_op مࡆ
+byte_en 2'b11
+ࢳ൤ೂ༯ğ
+•Store҂ཿ࠷թఖđ෮ၛ reg_we = 0 Ġ
+17
+--- PAGE 18 ---
+•Storeေཿଽթđ෮ၛ mem_we = 1 Ġ
+•ALUႨট࠹ෘֹᆶ R1 + imm đ෮ၛalu_src_imm = 1 đalu_opູمࡆĠ
+•ཿೆଽթ֥ඔऌটሱ src_bđ္ࣼ൞ rs2؀ԛ֥ᆴb
+Ⴍఃᇿၩğ
+Storeᇏđ alu_result ൞ֹᆶđ҂൞ཿೆଽթ֥ඔऌb
+3. Load Ҡቔ
+২ೂğ
+R6 = Mem[R1 + 0]
+॥ᇅྐݼႋ֒൞ğ
+॥ᇅྐݼ ౼ᆴ
+reg_we 1
+mem_we 0
+mem_to_reg 1
+alu_src_imm 1
+alu_op مࡆ
+ࢳ൤ೂ༯ğ
+•LoadေϜଽթඔऌཿ࠷߭թఖđ෮ၛ reg_we = 1 Ġ
+•Load҂ཿଽթđ෮ၛ mem_we = 0 Ġ
+•ཿ߭ඔऌটሱଽթđ෮ၛ mem_to_reg = 1 Ġ
+•ALUႨট࠹ෘֹᆶ R1 + imm đ෮ၛalu_src_imm = 1 đalu_opູمࡆb
+Ⴍఃᇿၩğ
+Loadᇏđ alu_result ൞ֹᆶđᆇᆞཿ߭ rd֥൞ mem_rdata b
+ֻ൅҄ğοקܥඨ྽ཿ testbench
+ࡹၰtestbench ο༯૫ඨ྽ཿđ҂ေෛ۳ࠏൻೆb
+18
+--- PAGE 19 ---
+1.گ໊༢๤
+༵ಞrst_n = 0 đЌӻ೏ۄൈࡗđಖުঘۚğ
+1rst _n = 0;
+2wait for two clock cycles ;
+3rst _n = 1;
+Listing 17: گ໊༢๤
+࡟Ұ࠷թఖ൞ڎౢਬb
+2.Ԛ൓࠷߄թఖ
+Ⴈinit_we Ԛ൓߄ğ
+࠷թఖ Ԛ൓ᆴ
+R116'h0004
+R216'h0006
+R316'hABCD
+ૄཿ၂࠷۱թఖ׻ေ֩ր၂۱ൈᇒഈശခb
+3.ᆳྛ௴๙ ALUᄎෘ
+ᆳྛğ
+R4 = R1 + R2
+௹ຬğ
+R4 = 16'h000A
+॥ᇅྐݼğ
+ྐݼ ౼ᆴ
+rs1 R1
+rs2 R2
+rd R4
+alu_op مࡆ
+alu_src_imm 0
+mem_to_reg 0
+mem_we 0
+reg_we 1
+19
+--- PAGE 20 ---
+4.ᆳྛ Store
+ᆳྛğ
+Mem[R1 + 0] = R3
+ၹູğ
+R1 = 16'h0004 ,imm = 16'h0000
+෮ၛൌ࠽ཿೆֹᆶູğ
+Mem[4]
+௹ຬğ
+Mem[4] = 16'hABCD
+॥ᇅྐݼğ
+ྐݼ ౼ᆴ
+rs1 R1
+rs2 R3
+imm 0
+alu_op مࡆ
+alu_src_imm 1
+mem_we 1
+reg_we 0
+byte_en 2'b11
+5.ᆳྛ Load
+ᆳྛğ
+R6 = Mem[R1 + 0]
+௹ຬğ
+R6 = 16'hABCD
+॥ᇅྐݼğ
+20
+--- PAGE 21 ---
+ྐݼ ౼ᆴ
+rs1 R1
+rd R6
+imm 0
+alu_op مࡆ
+alu_src_imm 1
+mem_we 0
+mem_to_reg 1
+reg_we 1
+6.ҩ൫ሳࢫཿ൐ି
+ॖၛᄝ๝၂۱ଽթֹᆶഈҩ൫֮ሳࢫཿۚބሳࢫཿb
+২ೂđଖֹᆶჰᆴູğ
+Mem[5] = 16'h1234
+֮ሳࢫཿğ
+ཿೆඔऌ = 16'h00AA ,byte_en = 2'b01
+ყ௹ğ
+Mem[5] = 16'h12AA
+ۚሳࢫཿğ
+ཿೆඔऌ = 16'hBB00 ,byte_en = 2'b10
+ყ௹ğ
+Mem[5] = 16'hBBAA
+೘aቋ࡟ުҰౢֆ
+࿐ളປӮުᇀഒ࡟Ұၛ༯ׄࠫğ
+1.ALUؽֻҠቔඔ൞ڎႮ alu_src_imm ᆞಒ࿊ᄴĤ
+21
+--- PAGE 22 ---
+2.ཿ߭ඔऌ൞ڎႮ mem_to_reg ᆞಒ࿊ᄴĤ
+3.Storeൈđཿೆଽթ֥ඔऌ൞ڎটሱ src_bĤ
+4.Loadൈđཿ࠷߭թఖ֥ඔऌ൞ڎটሱ mem_rdata Ĥ
+5.ඔऌթԥఖֹᆶ൞ڎ൐Ⴈ alu_result[4:0] Ĥ
+6.init_we ൞ڎႪ༵Ⴟᆞӈ reg_weĤ
+7.R0൞ڎ൓ᇔЌӻູ 0Ĥ
+8.byte_en = 2'b01 ൈ൞ڎᆺྩ֮ڿ 8໊Ĥ
+9.byte_en = 2'b10 ൈ൞ڎᆺྩۚڿ 8໊Ĥ
+10.testbench ൞ڎᄝൈᇒഈശခᆭުᄜ࡟ҰཿೆݔࢲĤ
+ඹaሹࢲ
+ೂݔ௴๙ ALUᄎෘaStoreބLoad೘োҠቔ׻ିοყ௹ປӮđᆃ֡ีނ֥ྏۿିࠎࣼЧ
+ᆞಒਔb
+Чี֥ᇗׄ҂൞ཿԛଖ၂۱ֆ֥׿ Verilogଆॶđط൞৘ࢳ CPUඔऌ๙ਫ਼ᇏ֥ඔऌੀཟğ
+࠷թఖؐิ܂Ҡቔඔđ ALUປӮᄎෘֹࠇᆶ࠹ෘđඔऌթԥఖປӮ؀ཿđཿ߭๙ਫ਼थק
+ቋᇔཿ࠷߭թఖ֥ඔऌটჷb
+ᆃࣼ൞ֆᇛ௹ CPUඔऌ๙ਫ਼ᇏቋނྏ֥၂҆ٳb
+22
