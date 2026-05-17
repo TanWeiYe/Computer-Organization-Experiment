@@ -7,6 +7,7 @@
 ### 1.1 目的
 
 理解 CPU 中最基本的寄存器型运算过程：
+
 ```
 读取源寄存器 → ALU 运算 → 写回目的寄存器
 ```
@@ -103,6 +104,7 @@ module alu_reg_datapath (
    - 写入 R0 时被忽略（`waddr != 3'b000` 时才写）
 
 3. **写后读旁路**：若本周期内同时读写同一寄存器，读端口应输出即将写入的新数据。
+
    ```verilog
    // 示例：写后读旁路逻辑
    assign rdata1 = (we && waddr == raddr1 && waddr != 3'b000) ? wdata : 
@@ -114,6 +116,7 @@ module alu_reg_datapath (
 **关键设计特点：**
 
 1. **初始化优先**：当 `init_we` 和 `reg_we` 同时为 1 时，优先执行初始化操作。
+
    ```verilog
    assign real_waddr = init_we ? init_addr : rd;
    assign real_wdata = init_we ? init_data : alu_result;
@@ -184,6 +187,7 @@ Before write: R1=0x0005
 **问题**：若同一周期内读写同一寄存器，由于寄存器堆是同步写，读端口会输出旧值
 
 **解决方案**：在读端口添加旁路逻辑
+
 ```verilog
 assign rdata1 = (we && waddr == raddr1 && waddr != 3'b000) ? wdata : 
                 (raddr1 == 3'b000) ? 16'h0000 : regs[raddr1];
@@ -202,6 +206,7 @@ assign rdata1 = (we && waddr == raddr1 && waddr != 3'b000) ? wdata :
 波形文件位置：`wave/p2.vcd`
 
 关键观察点：
+
 - 初始化过程：init_we 置位时，寄存器堆接收 init_data 并在时钟边沿写入
 - ALU 运算：src_a/src_b 读出后，alu_result 组合输出
 - 寄存器写回：当 reg_we = 1 时，alu_result 在下一个时钟上升沿存入 rd 指定寄存器
@@ -211,6 +216,7 @@ assign rdata1 = (we && waddr == raddr1 && waddr != 3'b000) ? wdata :
 ## 7. 总结
 
 本题设计验证了 CPU 数据通路的基本结构和控制逻辑：
+
 - ✓ 寄存器堆的读写操作
 - ✓ ALU 的组合运算
 - ✓ 寄存器写保护（R0）
