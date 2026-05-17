@@ -132,7 +132,10 @@ module tb_alu_reg_datapath;
         rs2 = 3'b010;
         rd = 3'b101;
         alu_op = 3'b000; // ADD
+        // Pulse reg_we for a single clock edge to avoid unintended multi-cycle writes
         reg_we = 1'b1;
+        @(posedge clk);
+        reg_we = 1'b0;
         #5;
         $display("  src_a=%h, src_b=%h, alu_result=%h", src_a, src_b, alu_result);
         #5;
@@ -149,6 +152,10 @@ module tb_alu_reg_datapath;
         rs2 = 3'b010;
         rd = 3'b110;
         alu_op = 3'b001; // SUB
+        // Pulse reg_we for single-cycle write
+        reg_we = 1'b1;
+        @(posedge clk);
+        reg_we = 1'b0;
         #5;
         $display("  src_a=%h, src_b=%h, alu_result=%h", src_a, src_b, alu_result);
         #5;
@@ -181,7 +188,10 @@ module tb_alu_reg_datapath;
         rs2 = 3'b010;
         rd = 3'b000; // 目标是 R0
         alu_op = 3'b000; // ADD
+        // Pulse reg_we (write to R0 will be ignored by regfile)
         reg_we = 1'b1;
+        @(posedge clk);
+        reg_we = 1'b0;
         #5;
         $display("  Attempting to write to R0, result=%h", alu_result);
         #5;
@@ -207,7 +217,10 @@ module tb_alu_reg_datapath;
         rd = 3'b101; // 也写 R5
         alu_op = 3'b000; // ADD
         init_we = 1'b0;
+        // Use single-cycle write pulse to avoid writing previous ALU outputs into other registers
         reg_we = 1'b1;
+        @(posedge clk);
+        reg_we = 1'b0;
         #5;
         // 此时 src_a 应该是 bypass 的值（新的 ALU 结果）
         $display("  R5 before: (old value from previous step)");
