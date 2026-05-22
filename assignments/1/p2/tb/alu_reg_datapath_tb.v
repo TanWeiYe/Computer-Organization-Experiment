@@ -132,6 +132,8 @@ module tb_alu_reg_datapath;
         rs2 = 3'b010;
         rd = 3'b101;
         alu_op = 3'b000; // ADD
+        // Wait one cycle so ALU inputs settle before writeback
+        @(posedge clk);
         // Pulse reg_we for a single clock edge to avoid unintended multi-cycle writes
         reg_we = 1'b1;
         @(posedge clk);
@@ -152,6 +154,8 @@ module tb_alu_reg_datapath;
         rs2 = 3'b010;
         rd = 3'b110;
         alu_op = 3'b001; // SUB
+        // Wait one cycle so ALU inputs settle before writeback
+        @(posedge clk);
         // Pulse reg_we for single-cycle write
         reg_we = 1'b1;
         @(posedge clk);
@@ -172,6 +176,8 @@ module tb_alu_reg_datapath;
         rs2 = 3'b100;
         rd = 3'b111;
         alu_op = 3'b010; // AND
+        // Wait one cycle so ALU inputs settle before writeback
+        @(posedge clk);
         // Pulse reg_we to write R7 this cycle
         reg_we = 1'b1;
         @(posedge clk);
@@ -192,6 +198,8 @@ module tb_alu_reg_datapath;
         rs2 = 3'b010;
         rd = 3'b000; // 目标是 R0
         alu_op = 3'b000; // ADD
+        // Wait one cycle so ALU inputs settle before writeback
+        @(posedge clk);
         // Pulse reg_we (write to R0 will be ignored by regfile)
         reg_we = 1'b1;
         @(posedge clk);
@@ -221,6 +229,8 @@ module tb_alu_reg_datapath;
         rd = 3'b101; // 也写 R5
         alu_op = 3'b000; // ADD
         init_we = 1'b0;
+        // Wait one cycle so ALU inputs settle before writeback
+        @(posedge clk);
         // Use single-cycle write pulse to avoid writing previous ALU outputs into other registers
         reg_we = 1'b1;
         @(posedge clk);
