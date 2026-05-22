@@ -33,3 +33,13 @@
 
 - 波形输出：`wave/p3.vcd`
 - 建议观察信号：`src_a`, `src_b`, `alu_result`, `mem_rdata`, `wb_data`, `reg_we`, `mem_we`, `byte_en`, `zero`
+
+## 6. 数据存储器单独测试（byte_en）
+
+测试序列与结果：
+
+- 写入 `16'hABCD` 到 `Mem[4]`，读回 `16'hABCD`
+- 仅写低字节 `16'h00EF` 到 `Mem[4]`，读回 `16'hABEF`
+- 仅写高字节 `16'h1200` 到 `Mem[4]`，读回 `16'h12EF`
+
+波形输出：`wave/p3_mem.vcd`
