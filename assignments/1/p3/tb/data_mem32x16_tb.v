@@ -24,6 +24,40 @@ module data_mem32x16_tb;
     initial begin
         $dumpfile("wave/p3_mem.vcd");
         $dumpvars(0, data_mem32x16_tb);
+        // 导出存储器数组，便于查看 Mem[0..31]
+        $dumpvars(0, data_mem32x16_tb.dut);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[0]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[1]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[2]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[3]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[4]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[5]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[6]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[7]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[8]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[9]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[10]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[11]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[12]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[13]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[14]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[15]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[16]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[17]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[18]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[19]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[20]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[21]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[22]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[23]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[24]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[25]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[26]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[27]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[28]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[29]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[30]);
+        $dumpvars(0, data_mem32x16_tb.dut.mem[31]);
     end
 
     // 时钟

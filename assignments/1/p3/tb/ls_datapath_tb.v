@@ -58,6 +58,50 @@ module ls_datapath_tb;
     initial begin
         $dumpfile("wave/p3.vcd");
         $dumpvars(0, ls_datapath_tb);
+        // 导出寄存器堆内部数组，便于在波形中查看 R0-R7
+        $dumpvars(0, ls_datapath_tb.dut.regfile);
+        $dumpvars(0, ls_datapath_tb.dut.regfile.regs[0]);
+        $dumpvars(0, ls_datapath_tb.dut.regfile.regs[1]);
+        $dumpvars(0, ls_datapath_tb.dut.regfile.regs[2]);
+        $dumpvars(0, ls_datapath_tb.dut.regfile.regs[3]);
+        $dumpvars(0, ls_datapath_tb.dut.regfile.regs[4]);
+        $dumpvars(0, ls_datapath_tb.dut.regfile.regs[5]);
+        $dumpvars(0, ls_datapath_tb.dut.regfile.regs[6]);
+        $dumpvars(0, ls_datapath_tb.dut.regfile.regs[7]);
+        // 导出数据存储器数组，便于在波形中查看 Mem[0..31]
+        $dumpvars(0, ls_datapath_tb.dut.data_mem);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[0]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[1]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[2]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[3]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[4]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[5]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[6]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[7]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[8]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[9]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[10]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[11]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[12]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[13]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[14]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[15]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[16]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[17]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[18]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[19]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[20]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[21]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[22]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[23]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[24]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[25]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[26]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[27]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[28]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[29]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[30]);
+        $dumpvars(0, ls_datapath_tb.dut.data_mem.mem[31]);
     end
 
     // 时钟
@@ -108,6 +152,7 @@ module ls_datapath_tb;
         alu_src_imm = 1'b0;
         mem_to_reg = 1'b0;
         mem_we = 1'b0;
+        #1; // 让控制信号在波形中稳定显示
         @(posedge clk); // 等待 ALU 稳定
         reg_we = 1'b1; @(posedge clk); reg_we = 1'b0;
         if (alu_result == 16'h000A) $display("  [PASS] ALU result = 0x000A");
@@ -120,6 +165,7 @@ module ls_datapath_tb;
         alu_src_imm = 1'b0;
         mem_to_reg = 1'b0;
         mem_we = 1'b0;
+        #1; // 让控制信号在波形中稳定显示
         @(posedge clk);
         reg_we = 1'b1; @(posedge clk); reg_we = 1'b0;
         if (alu_result == 16'h0006) $display("  [PASS] ALU result = 0x0006");
@@ -132,6 +178,7 @@ module ls_datapath_tb;
         alu_src_imm = 1'b1;
         mem_to_reg = 1'b0;
         byte_en = 2'b11;
+        #1; // 让控制信号在波形中稳定显示
         #1;
         $display("  addr=%0d alu_result=%h src_b=%h", alu_result[4:0], alu_result, src_b);
         @(posedge clk);
@@ -145,6 +192,7 @@ module ls_datapath_tb;
         alu_src_imm = 1'b1;
         mem_to_reg = 1'b1;
         mem_we = 1'b0;
+        #1; // 让控制信号在波形中稳定显示
         @(posedge clk);
         reg_we = 1'b1; @(posedge clk); reg_we = 1'b0;
         #1; // 等待组合读稳定
@@ -157,6 +205,7 @@ module ls_datapath_tb;
         alu_op = 3'b000; // ADD
         alu_src_imm = 1'b1;
         byte_en = 2'b01;
+        #1; // 让控制信号在波形中稳定显示
         @(posedge clk);
         mem_we = 1'b1; @(posedge clk); mem_we = 1'b0;
         @(posedge clk); // 等待存储器完成写入
@@ -167,6 +216,7 @@ module ls_datapath_tb;
         alu_op = 3'b000; // ADD
         alu_src_imm = 1'b1;
         byte_en = 2'b10;
+        #1; // 让控制信号在波形中稳定显示
         #1;
         $display("  addr=%0d alu_result=%h src_b=%h byte_en=%b", alu_result[4:0], alu_result, src_b, byte_en);
         @(posedge clk);
@@ -180,6 +230,7 @@ module ls_datapath_tb;
         alu_src_imm = 1'b1;
         mem_to_reg = 1'b1;
         mem_we = 1'b0;
+        #1; // 让控制信号在波形中稳定显示
         @(posedge clk);
         reg_we = 1'b1; @(posedge clk); reg_we = 1'b0;
         #1; // 等待组合读稳定
@@ -192,6 +243,7 @@ module ls_datapath_tb;
         alu_op = 3'b000; // ADD
         alu_src_imm = 1'b0;
         mem_to_reg = 1'b0;
+        #1; // 让控制信号在波形中稳定显示
         @(posedge clk);
         reg_we = 1'b1; @(posedge clk); reg_we = 1'b0;
         rs1 = 3'b000; rs2 = 3'b000;
@@ -205,10 +257,12 @@ module ls_datapath_tb;
         alu_op = 3'b001; // SUB (R1 - R1)
         alu_src_imm = 1'b0;
         mem_to_reg = 1'b0;
+        #1; // 让控制信号在波形中稳定显示
         #1; // 等待组合结果更新
         if (zero) $display("  [PASS] zero flag set");
         else $display("  [FAIL] zero flag not set");
 
+        #10; // 额外延迟，便于观察 zero 标志
         $display("\n=== p3 testbench finished ===");
         $finish;
     end
