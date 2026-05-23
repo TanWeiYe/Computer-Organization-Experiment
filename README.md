@@ -32,6 +32,14 @@
 
 提交材料统一放在 `submit/<n>/`，可直接压缩为 zip 提交。
 
+每次作业在 `submit/<n>/docs/` 中新增：`2419040125-谭炜烨.txt`。
+内容为：
+
+```
+完整工程请参考以下仓库：
+https://github.com/TanWeiYe/Computer-Organization-Experiment
+```
+
 ```
 submit/<n>/
 ├─ docs/                         # 汇总报告 PDF
