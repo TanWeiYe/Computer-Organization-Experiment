@@ -53,7 +53,7 @@ module alu_reg_datapath (
 
 ### 2.3 数据流
 
-![P2 数据通路图](/assignments/1/p2/docs/p2数据通路图.drawio.svg)
+![P2 数据通路图](../p2/docs/p2数据通路图.drawio.svg)
 
 ## 3. 模块设计
 
@@ -155,7 +155,7 @@ Before write: R1=0x0005
 
 波形截图（问题出现时）：
 
-![P2 波形截图](/assignments/1/p2/docs/wave_s2.png)
+![P2 波形截图](../p2/docs/wave_s2.png)
 
 关键观察点：
 
@@ -185,7 +185,7 @@ Before write: R1=0x0005
 
 波形截图（修正后）：
 
-![P2 波形截图（修正后）](/assignments/1/p2/docs/wave_s3.png)
+![P2 波形截图（修正后）](../p2/docs/wave_s3.png)
 
 结果说明：修正后各步写回只发生在预期的时钟上升沿，`regs[5]`、`regs[6]` 等寄存器写入值与当拍 `alu_result` 对齐，不再出现“旧值被写回”的现象。
 

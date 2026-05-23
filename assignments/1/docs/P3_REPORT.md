@@ -6,11 +6,11 @@
 
 ## 2. 数据通路图
 
-![P3 数据通路图](/assignments/1/p3/docs/p3_datapath.drawio.svg)
+![P3 数据通路图](../p3/docs/p3_datapath.drawio.svg)
 
 ## 3. 数据存储器单独测试（byte_en）
 
-![数据存储器单独测试波形](/assignments/1/p3/docs/8C52547B40F4358A23430811350EC83B.png)
+![数据存储器单独测试波形](../p3/docs/8C52547B40F4358A23430811350EC83B.png)
 
 测试序列与结果：
 
@@ -68,7 +68,7 @@
 
 波形截图：
 
-![P3 主数据通路波形](/assignments/1/p3/docs/D5137799BBC3C0C5FAA9592D934D4230.png)
+![P3 主数据通路波形](../p3/docs/D5137799BBC3C0C5FAA9592D934D4230.png)
 
 ## 8. Load/Store 地址计算说明
 

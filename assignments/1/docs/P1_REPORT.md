@@ -125,7 +125,7 @@ overflow = (a[15] != b[15]) && (result[15] != a[15])
 
 下面展示一张来自本次仿真的样例波形截图
 
-![ALU16 仿真波形样例](/assignments/1/p1/docs/wave_s1.png)
+![ALU16 仿真波形样例](../p1/docs/wave_s1.png)
 
 图注：该截图显示了多个测试用例在时间轴上的输入/输出变化，可用于验证 `result` 与标志位 `zero/carry/negative/overflow` 的时序关系。
 
