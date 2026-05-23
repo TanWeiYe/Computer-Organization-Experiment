@@ -11,7 +11,8 @@
 ```
 .
 ├─ assignments/
-│  └─ <n>/                      # 见3.
+│  └─ <n>/                      # 见第 3 节
+├─ submit/                      # 提交材料（按作业号归档）
 ├─ build/                       # 编译产物（统一输出）
 ├─ wave/                        # 波形输出（统一输出 .vcd）
 ├─ scripts/                     # 一键脚本
@@ -27,6 +28,20 @@
 - Icarus Verilog：`iverilog` / `vvp`
 - GTKWave：`gtkwave`
 
+## 2.1 提交材料目录
+
+提交材料统一放在 `submit/<n>/`，可直接压缩为 zip 提交。
+
+```
+submit/<n>/
+├─ docs/                         # 汇总报告 PDF
+└─ p1/
+   ├─ src/verilog/               # 题目源码
+   ├─ tb/                        # 题目测试平台
+   └─ docs/                      # 波形截图/图表
+
+```
+
 <a id="assignments-n-structure"></a>
 
 ## 3. assignments/<n> 结构说明（最小模板）
@@ -38,9 +53,9 @@ assignments/<n>/
 ├─ docs/                         # 本次作业汇总报告（MD/PDF）
 └─ p1/                            # 题目目录（p1/p2/p3...）
  ├─ src/verilog/                 # 设计源码
- │  └─ <design>.sv
+ │  └─ <design>.v
  ├─ tb/                          # 测试平台
- │  └─ <design>_tb.sv
+ │  └─ <design>_tb.v
  └─ docs/                        # 题目素材（截图/图表）
 ```
 

@@ -70,3 +70,12 @@ assignments/<n>/docs/
 1. 打开 `assignments/<n>/docs/*.md`
 2. 右键编辑器 → Markdown PDF: Export (pdf)
 3. PDF 会输出到同目录
+
+## 6. 提交材料
+
+提交材料包含以下内容，并按对应目录整理：
+
+- Verilog 代码（`.v`）：`assignments/<n>/pX/src/verilog/`
+- Testbench（`.v`）：`assignments/<n>/pX/tb/`
+- 仿真波形截图（ModelSim/Vivado/Quartus/GTKWave）：`assignments/<n>/pX/docs/`
+- 实验报告 PDF：`assignments/<n>/docs/`
