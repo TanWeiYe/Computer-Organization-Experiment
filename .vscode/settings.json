@@ -1,9 +1,6 @@
 {
   "files.associations": {
-    "*.v": "verilog",
-    "*.sv": "systemverilog",
-    "*.svh": "systemverilog",
-    "*.bsv": "bluespec"
+    "*.v": "verilog"
   },
   "editor.tabSize": 2,
   "editor.insertSpaces": true,

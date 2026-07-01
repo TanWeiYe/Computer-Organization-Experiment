@@ -18,7 +18,7 @@
 
 脚本默认会：
 
-1. 编译 `src/verilog/*.sv` 与 `tb/*.sv`
+1. 编译 `src/verilog/*.v` 与 `tb/*.v`
 2. 运行仿真并生成 `wave/<top>.vcd`
 3. 自动打开 GTKWave 查看波形
 
@@ -71,11 +71,22 @@ assignments/<n>/docs/
 2. 右键编辑器 → Markdown PDF: Export (pdf)
 3. PDF 会输出到同目录
 
-## 6. 提交材料
+## 6. 打包提交材料
 
-提交材料包含以下内容，并按对应目录整理：
+完成所有题目后，使用同步脚本一键打包：
 
-- Verilog 代码（`.v`）：`assignments/<n>/pX/src/verilog/`
-- Testbench（`.v`）：`assignments/<n>/pX/tb/`
-- 仿真波形截图（ModelSim/Vivado/Quartus/GTKWave）：`assignments/<n>/pX/docs/`
-- 实验报告 PDF：`assignments/<n>/docs/`
+```powershell
+.\scripts\sync-submit.ps1          # 默认同步作业 1
+.\scripts\sync-submit.ps1 2        # 同步作业 2
+```
+
+脚本自动从 `assignments/<n>/` 收集：
+
+- Verilog 代码（`.v`）
+- Testbench（`.v`）
+- 波形截图（`wave_*.png`）
+- 数据通路图（`.drawio.svg`）
+- 实验报告 PDF
+- 工程链接文件
+
+然后压缩 `submit/<n>/` 为 zip 提交。

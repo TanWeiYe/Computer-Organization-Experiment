@@ -1,6 +1,6 @@
 `timescale 1ps/1ps
 
-// alu_reg_datapath.sv - ALU 与寄存器堆组合的数据通路
+// alu_reg_datapath.v - ALU 与寄存器堆组合的数据通路
 // 功能：从寄存器堆读取两个操作数，送入 ALU 进行运算，将结果写回寄存器堆
 module alu_reg_datapath (
     input  wire clk,

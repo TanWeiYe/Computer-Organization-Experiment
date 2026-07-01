@@ -12,16 +12,16 @@ if "%~1"=="" (
     rem 默认指向 assignments/1/p1
     set PROBLEM=assignments\1\p1
     set TOP=alu16
-    set VERILOG=%PROBLEM%\src\verilog\*.sv
-    set TESTBENCH=%PROBLEM%\tb\*.sv
+    set VERILOG=%PROBLEM%\src\verilog\*.v
+    set TESTBENCH=%PROBLEM%\tb\*.v
 ) else (
     rem 如果第一个参数是目录，则视为作业或题目目录
     if exist "%~1" (
         set PROBLEM=%~1
         rem 如果直接包含 src\verilog，则使用它
         if exist "%PROBLEM%\src\verilog" (
-            set VERILOG=%PROBLEM%\src\verilog\*.sv
-            set TESTBENCH=%PROBLEM%\tb\*.sv
+            set VERILOG=%PROBLEM%\src\verilog\*.v
+            set TESTBENCH=%PROBLEM%\tb\*.v
         ) else (
             rem 否则查找 p* 子目录中的第一个
             for /d %%D in ("%PROBLEM%\p*") do (
@@ -29,8 +29,8 @@ if "%~1"=="" (
                 goto :FOUND_PROBLEM
             )
             :FOUND_PROBLEM
-            set VERILOG=%PROBLEM%\src\verilog\*.sv
-            set TESTBENCH=%PROBLEM%\tb\*.sv
+            set VERILOG=%PROBLEM%\src\verilog\*.v
+            set TESTBENCH=%PROBLEM%\tb\*.v
         )
         rem 顶层名取目录名
         for %%F in ("%PROBLEM%") do set TOP=%%~nxf

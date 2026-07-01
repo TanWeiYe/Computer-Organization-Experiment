@@ -2,23 +2,6 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Toolchain: Check Availability",
-      "type": "shell",
-      "command": "powershell",
-      "args": [
-        "-NoProfile",
-        "-ExecutionPolicy",
-        "Bypass",
-        "-File",
-        "${workspaceFolder}/scripts/check-toolchain.ps1"
-      ],
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated"
-      }
-    },
-    {
       "label": "Run: Simulation (run-sim)",
       "type": "shell",
       "command": "${workspaceFolder}/scripts/run-sim.bat",

@@ -1,6 +1,6 @@
 `timescale 1ps/1ps
 
-// regfile8x16.sv - 8x16 寄存器堆模块
+// regfile8x16.v - 8x16 寄存器堆模块
 // 功能：包含8个16位寄存器（R0-R7），R0 恒为 0，支持写后读旁路
 module regfile8x16 (
     input  wire clk,

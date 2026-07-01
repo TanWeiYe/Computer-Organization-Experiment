@@ -2,7 +2,12 @@ import sys
 from pathlib import Path
 from PyPDF2 import PdfReader
 
-pdf_path = Path(r"d:\Program\数电实践\assignments\1\docs\2026_课内实践作业1.pdf")
+# Usage: python extract_pdf.py <pdf_path>
+if len(sys.argv) < 2:
+    print("Usage: python extract_pdf.py <pdf_path>")
+    sys.exit(1)
+
+pdf_path = Path(sys.argv[1])
 if not pdf_path.exists():
     print("ERROR: PDF not found:", pdf_path)
     sys.exit(2)
